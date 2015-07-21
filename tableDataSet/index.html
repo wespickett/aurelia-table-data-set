@@ -1,0 +1,16 @@
+<template>
+    <table>
+        <tbody>
+            <tr repeat.for="dataRow of dataSet">
+                <td repeat.for="dataCol of $parent.dataCols">
+                    <textarea show.bind="!!$parent.$parent.editMode[$parent.$index]" value.bind="$parent.dataRow[dataCol]"></textarea>
+                    ${ $parent.$parent.editMode[$parent.$index] ? '' : $parent.dataRow[dataCol] }
+                </td>
+                <td>
+                    <button show.bind="$parent.editable" click.delegate="$parent.editRow($index)">${  $parent.editMode[$index] ? '&#9989;' : '[E]'}</button> 
+                    <button show.bind="$parent.canDelete" click.delegate="$parent.deleteRow($index)">[D]</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>
